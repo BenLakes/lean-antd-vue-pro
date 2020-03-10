@@ -119,7 +119,10 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   // to and from are both route objects. must call `next`.
-  NProgress.start();
+  if (to.path !== from.path) {
+    NProgress.start();
+  }
+  
   next();
 });
 router.afterEach( () => {

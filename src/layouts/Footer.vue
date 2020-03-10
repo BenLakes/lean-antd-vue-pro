@@ -1,5 +1,5 @@
 <template>
    <div>
-     Footer View
+     Ant Design ©2019 Created by CAVS
    </div>
 </template>
