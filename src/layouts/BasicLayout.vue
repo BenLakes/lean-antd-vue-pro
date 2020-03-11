@@ -7,9 +7,10 @@
         :trigger="null"
         collapsible
         v-model="collapsed"
+        width = "256px"
       >
         <div class="logo" >Ant Design Vue Pro</div>
-        <SiderMenu />
+        <SiderMenu :theme="navTheme"/>
       </a-layout-sider>
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">
@@ -39,6 +40,7 @@ import SiderMenu from "./SiderMenu";
 import SettringDrawer from "../components/SettingDrawer";
 
 export default {
+ 
   components: {
     Header,
     Footer,

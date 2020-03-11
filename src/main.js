@@ -7,7 +7,7 @@ import store from "./store";
 // import Button from "ant-design-vue/lib/button";
 // import 'ant-design-vue/lib/button/style';
 
-import {Button, Layout, Icon, Drawer, Radio} from "ant-design-vue";
+import {Button, Layout, Icon, Drawer, Radio, Menu} from "ant-design-vue";
 
 // Vue.use(Antd);
 Vue.use(Button);
@@ -15,6 +15,7 @@ Vue.use(Layout);
 Vue.use(Icon);
 Vue.use(Drawer);
 Vue.use(Radio);
+Vue.use(Menu);
 Vue.config.productionTip = false;
 
 new Vue({

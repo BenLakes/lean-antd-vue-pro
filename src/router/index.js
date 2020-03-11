@@ -12,6 +12,7 @@ const routes = [{
     path: "/user",
     //  component:RenderRouterView,
     // component: {render:(h) => (h('router-view'))},
+    hideInMenu: true,
     component: () =>
       import( /* webpackChunkName: "layout" */ "../layouts/UserLayout.vue"),
     children: [{
@@ -45,12 +46,14 @@ const routes = [{
       {
         path: "/dashboard",
         name: "dashboard",
+        meta: {icon: "dashboard", title: "仪表盘"},
         component: {
           render: (h) => h("router-view")
         },
         children: [{
           path: "/dashboard/analysis",
           name: "analysis",
+          meta:{title: "分析页"},
           component: () =>
             import( /* webpackChunkName: "dashboard" */ "../views/Dashboard/Analysis.vue"),
         }]
@@ -61,17 +64,22 @@ const routes = [{
       {
         path: "/form",
         name: "form",
-        component: { render: h => h("router-view") },
+        // component: { render: h => h("router-view") },
+        component: () => import(/* webpackChunkName: "layout" */ "../layouts/BasicLayout"),
+        meta: {icon: "form", title: "表单"},
         children: [
           {
             path: "/form/basic-form",
             name: "basicform",
+            meta:{title: "基础表单"},
             component: () =>
               import(/* webpackChunkName: "form" */ "../views/Forms/BasicForm")
           },
           {
             path: "/form/step-form",
             name: "stepform",
+            meta:{title: "分布表单"},
+            hideChildrenMenu: true,
             component: () =>
               import(/* webpackChunkName: "form" */ "../views/Forms/StepForm"),
             children: [
@@ -104,6 +112,7 @@ const routes = [{
   {
     path: "*",
     name: "404",
+    hideInMenu: true,
     component: NotFoundPage
   },
 ];
