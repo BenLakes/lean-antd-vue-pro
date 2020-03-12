@@ -27,6 +27,7 @@
  * SubMenu1.vue https://github.com/vueComponent/ant-design-vue/blob/master/components/menu/demo/SubMenu1.vue
  * */
 import SubMenu from "./SubMenu";
+import {check} from "../utils/auth";
 export default {
   props: {
     theme: {
@@ -61,9 +62,12 @@ export default {
     // 获取列表数据  TODO
     getMenuData(routes = [], parentKeys = [], selectedKey) {
       const menuData = [];
-      routes.forEach(item => {
+      for (let item of routes) {
         // 当存在名字  且 没设置隐藏时候
         if (item.name && !item.hideInMenu) {
+          if (item.meta && item.meta.authority && !check(item.meta.authority)) {
+             break;
+          }
           this.openKeysMap[item.path] = parentKeys;
           this.selectedKeysMap[item.path] = [selectedKey || item.path];
           const newItem = { ...item };
@@ -92,7 +96,7 @@ export default {
             ...this.getMenuData(item.children, [...parentKeys, item.path])
           );
         }
-      });
+      }
       return menuData;
     }
   }
