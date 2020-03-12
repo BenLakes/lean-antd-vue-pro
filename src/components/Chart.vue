@@ -1,0 +1,57 @@
+<template>
+  <div ref="chartDom" style="height: 400px"></div>
+</template>
+<script>
+import echarts from "echarts";
+// 高度变化重新计算  echarts 高度
+import { addListener, removeListener } from "resize-detector";
+import debounce from 'lodash/debounce'
+export default {
+  props:{
+    option:{
+      type: Object,
+      default: ()=>{}
+    }
+  },
+  watch: {
+    option(val){
+       this.myChart.setOption(val) 
+    }
+    // option:{
+    //   handler(val){
+    //     this.myChart.setOption(val)  
+    //   },
+    //   deep:true
+    // }
+   
+  },
+  created() {
+    this.resize = debounce(this.resize, 300);
+  },
+  mounted() {
+    this.renderChart();
+    
+    addListener(this.$refs.chartDom, this.resize);
+  
+
+   
+  },
+  methods: {
+    resize() {
+      console.log("resize");
+      this.myChart.resize();
+    },
+    renderChart(){
+// 基于准备好的dom，初始化echarts实例
+    this.myChart = echarts.init(this.$refs.chartDom);
+ // 使用刚指定的配置项和数据显示图表。
+    this.myChart.setOption(this.option);
+    }
+  },
+  beforeDestroy() {
+    removeListener(this.$refs.chartDom);
+    this.myChart.dispose();
+    this.myChart = null;
+  },
+};
+</script>
