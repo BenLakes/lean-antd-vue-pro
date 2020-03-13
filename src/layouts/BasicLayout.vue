@@ -1,16 +1,16 @@
 <template>
   <div :class="[`nav-theme-${navTheme}`, `nav-theme-${navLayout}`]">
-    <a-layout id="components-layout-demo-side" style="min-height: 100vh">
+    <a-layout class="components-layout-demo-side" style="min-height: 100vh">
       <a-layout-sider
         v-if="navLayout === 'left'"
         :theme="navTheme"
         :trigger="null"
         collapsible
         v-model="collapsed"
-        width = "256px"
+        width="256px"
       >
-        <div class="logo" >Ant Design Vue Pro</div>
-        <SiderMenu :theme="navTheme"/>
+        <div class="logo">Ant Design Vue Pro</div>
+        <SiderMenu :theme="navTheme" />
       </a-layout-sider>
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">
@@ -31,7 +31,7 @@
       </a-layout>
     </a-layout>
     <Authorized :authority="['admin']">
-    <SettringDrawer />
+      <SettringDrawer />
     </Authorized>
   </div>
 </template>
@@ -43,7 +43,6 @@ import SiderMenu from "./SiderMenu";
 import SettringDrawer from "../components/SettingDrawer";
 
 export default {
- 
   components: {
     Header,
     Footer,
@@ -74,13 +73,16 @@ export default {
 .trigger:hover {
   background-color: #eee;
 }
-.logo{
+.logo {
   height: 64px;
   line-height: 64px;
   text-align: center;
   overflow: hidden;
 }
-.nav-theme-dark >>> .logo{
+.nav-theme-dark >>> .logo {
   color: #fff;
+}
+.components-layout-demo-side >>> .ant-menu-dark .ant-menu-item-selected {
+  color: #000;
 }
 </style>
